@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-function processFile(fileName) {
+async function processFile(fileName) {
     return new Promise((resolve, reject) => {
         if (!fileName) reject(new Error('No file provided'));
 
@@ -10,16 +10,11 @@ function processFile(fileName) {
         });
 }
 
-const result = processFile()
-    .then(successHandler)
-    .catch(rejectHandler)
-
-function successHandler(result) {
-    console.log(`From promise: ${result}`);
-}
-
-function rejectHandler(err) {
-    console.log(err.message);
-}
-
-
+(async function main() {
+    try {
+        const result = await processFile();
+        console.log(`From promise: ${result}`);   
+    } catch (error) {
+        console.log(error.message);    
+    }
+})()
