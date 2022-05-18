@@ -9,7 +9,7 @@ async function processFile(fileName) {
         let fileContents = '';
 
         const onDataHandler = chunk => {
-            console.log(`Received chunk: ${chunk.length}`);
+            // console.log(`Received chunk: ${chunk.length}`);
             fileContents += chunk.toString();
         };
 
@@ -24,10 +24,23 @@ async function processFile(fileName) {
     });
 }
 
+async function processData(dataBuffer) {
+    return new Promise((resolve, reject) => {
+        try {
+            const startLine = +process.argv[2] || 1;
+            const endLine = +process.argv[3] || Infinity;
+            const dataArr = dataBuffer.split("\r\n").slice(startLine-1, endLine).join("\r\n");
+            resolve(dataArr);   
+        } catch (error) {
+            reject(error.message);
+        }
+    });
+}
+
 (async function main() {
     try {
         const result = await processFile('btc.csv');
-        console.log(result.slice(0,200));
+        console.log(await processData(result));
     } catch (error) {
         console.log(error.message);    
     }
