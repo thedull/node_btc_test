@@ -4,18 +4,35 @@
   "description": "This is a small exercise to exemplify some basic Node.js concept such as Arrays, File System, Streams, Events, Promises, and many others",
   "main": "btc.js",
   "scripts": {
-    "test": "node dist/consume.js '2020-01-01' '2020-01-10'",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "start": "npm run build && node dist/consume.js"
+    "start": "npm run build && node dist/server.js",
+    "dev": "nodemon"
   },
   "keywords": [],
   "author": "Gabriel Trujillo <joaqt23@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@thedull/btc-stats": "^0.0.1",
+    "@thedull/btc-stats": "^0.0.2",
+    "@types/express": "^4.17.13",
+    "express": "^4.18.1",
     "typescript": "^4.6.4"
   },
   "devDependencies": {
-    "@types/node": "^17.0.34"
+    "@types/node": "^17.0.34",
+    "nodemon": "^2.0.16"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "**/*.test.ts",
+      "**/*.spec.ts",
+      ".git",
+      "node_modules"
+    ],
+    "watch": [
+      "src"
+    ],
+    "exec": "npm start",
+    "ext": "ts"
   }
 }
