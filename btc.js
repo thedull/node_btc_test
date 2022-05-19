@@ -42,16 +42,32 @@ async function processData(dataBuffer) {
     });
 }
 
+function getIndexFromDate(arr, date) {
+    return arr.findIndex(entry => entry.date.toISOString().slice(0,10) === date.toISOString().slice(0,10));
+}
+
 function getRange(rawData, startDate, endDate) {
     if (startDate > endDate) throw new Error('Start date after end date');
 
-    let startIndex = rawData.findIndex(entry => entry.date.toISOString().slice(0,10) === startDate.toISOString().slice(0,10));
+    let startIndex = getIndexFromDate(rawData, startDate);
     if (startIndex === -1) startIndex = 0; 
-    let endIndex = rawData.findIndex(entry => entry.date.toISOString().slice(0,10) === endDate.toISOString().slice(0,10));
+    let endIndex = getIndexFromDate(rawData, endDate);
     if (endIndex === -1) endIndex = rawData.length;
     
     return rawData.slice(startIndex, endIndex+1);
 } 
+
+function getRangeStats(range) {
+    if (range?.length == 0) return null;
+
+    const pricesArray = range.map(entry => entry.price);
+    const count = range.length;
+    const max = Math.max(...pricesArray);
+    const min = Math.min(...pricesArray);
+    const average = pricesArray.reduce((acc, curr) => acc+curr, 0)/count;
+    const variation = `${((pricesArray.at(-1)-pricesArray.at(0))/pricesArray.at(0)*100).toFixed(2)}%`;
+    return { count, max, min, average, variation };
+}
 
 (async function main() {
     try {
@@ -62,7 +78,8 @@ function getRange(rawData, startDate, endDate) {
         const result = await processFile('btc.csv');
         const rawData = await processData(result);
         const data = getRange(rawData, startDate, endDate);
-        console.log({ data });
+        const stats = getRangeStats(data);
+        console.log({ data, stats });
     } catch (error) {
         console.log(error.message);    
         console.log('Usage: node btc.js <startDate (YYYY-MM-DD)> [endDate (YYYY-MM-DD)]');    
