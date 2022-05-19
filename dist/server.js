@@ -13,12 +13,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const btc_stats_1 = __importDefault(require("@thedull/btc-stats"));
+const btc_1 = __importDefault(require("../lib/btc-stats/btc"));
 const app = (0, express_1.default)();
 app.get('/btc-stats', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { start, end } = req.query;
     const [startDate, endDate] = [start === null || start === void 0 ? void 0 : start.toString(), end === null || end === void 0 ? void 0 : end.toString()];
-    const btcData = yield (0, btc_stats_1.default)(startDate, endDate);
+    const btcData = yield (0, btc_1.default)(startDate, endDate);
     res.setHeader('Content-type', 'application/json');
     return res.status(200).send(btcData);
 }));

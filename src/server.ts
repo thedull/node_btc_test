@@ -1,5 +1,5 @@
 import express from 'express';
-import btcStats from '@thedull/btc-stats';
+import btcStats from '../lib/btc-stats/btc';
 
 const app = express();
 
