@@ -12,6 +12,7 @@
   "author": "Gabriel Trujillo <joaqt23@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@thedull/btc-stats": "^0.0.1",
     "typescript": "^4.6.4"
   },
   "devDependencies": {

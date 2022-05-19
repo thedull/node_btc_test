@@ -1,4 +1,4 @@
-import btcStats from '../lib/btc';
+import btcStats from '@thedull/btc-stats';
 
 const startDate = process.argv[2];
 const endDate = process.argv[3];
