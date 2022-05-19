@@ -8,5 +8,6 @@
   },
   "keywords": [],
   "author": "Gabriel Trujillo <joaqt23@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "types": "types/btc-stats.d.ts"
 }
