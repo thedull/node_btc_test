@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>BTC Stats</title>
+</head>
+<body>
+    <div class="row">&nbsp;</div>
+    <div class="container-fluid">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="d-flex p-2">
+                <h1 class="display-1">BTC Stats</h1>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">&nbsp;</div>
+            <form>
+                <div class="row">
+                    <div class="col-3">
+                        <label for="start" class="form-label">Start date</label>
+                    </div>
+                    <div class="col-3">
+                        <label for="end" class="form-label">Final date</label>
+                    </div>
+                    <div class="col">&nbsp;</div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <input type="text" name="start" id="start" class="form-control" />        
+                    </div>
+                    <div class="col-3">
+                        <input type="text" name="end" id="end" class="form-control"/>
+                    </div>
+                    <div class="col">
+                        <button id="search" type="button" class="btn btn-primary">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="row">&nbsp;</div>
+        <div class="container-fluid"><div class="row" id="app"></div></div>
+    </div>
+    <script src="./app.ts"></script>
+</body>
+</html>

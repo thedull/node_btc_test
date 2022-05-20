@@ -1,0 +1,8 @@
+@import url("../node_modules/bootstrap/dist/css/bootstrap.min.css"); 
+
+.stats-title {
+    text-transform: capitalize;
+}
+
+
+    
